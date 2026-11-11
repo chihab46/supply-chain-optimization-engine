@@ -1,6 +1,5 @@
 # Project requirements
 
-Source brief: [project_description.md](../project_description.md).
 This document defines the implementation scope. It does not claim that the
 pipeline, performance targets, or model accuracy have been achieved.
 

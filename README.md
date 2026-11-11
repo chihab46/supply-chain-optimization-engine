@@ -9,8 +9,7 @@ and a Pyomo/HiGHS replenishment solver, with a working Plotly Dash simulator.
 
 Forecast scores below are measured on four frozen seasonal backtests
 across 600 store-item series. Inventory scores use the untouched fourth fold
-with common synthetic starting stock, receipts, capacity and economics. The
-figures in `project_description.md` are illustrative and are not used as results.
+with common synthetic starting stock, receipts, capacity and economics.
 
 | Pipeline stage / policy | Forecast WMAPE (%) | 90% coverage rate | Simulated fill rate (%) | 28-day holding cost ($) | 28-day stockout cost ($) | Total supply chain cost ($) |
 | --- | --- | --- | --- | --- | --- | --- |
