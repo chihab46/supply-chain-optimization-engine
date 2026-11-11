@@ -1,0 +1,65 @@
+# Ingestion consumes seed/data; features use data paths and forecast.horizon_days.
+seed: 42
+data:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  synthetic_dir: data/synthetic
+  state: CA
+  stores: [CA_1, CA_2, CA_3]
+  categories: [FOODS, HOUSEHOLD, HOBBIES]
+  max_bottom_series: 600  # A leaf is one store-item pair, not one distinct item.
+  history_days: 1100
+  selection: stratified_velocity_and_intermittency
+  # Last day whose sales may influence selection.
+  # Set this no later than the earliest evaluation origin.
+  selection_cutoff: 2015-02-28
+  chunk_size: 512
+backtest:
+  horizon_days: 28
+  n_windows: 4
+  season_length: 7
+  tuning_fold_ids: [1, 2, 3]
+  holdout_fold_id: 4
+  # Last observed day. Each validation window starts the following day.
+  # Spring, summer, back-to-school, then winter holidays. Frozen before tuning.
+  cutoff_dates: [2015-02-28, 2015-05-31, 2015-08-16, 2015-11-29]
+  conformal_windows: 2
+  tsb_alpha_d: 0.1
+  tsb_alpha_p: 0.1
+  n_jobs: 2
+forecast:
+  horizon_days: 28
+  quantiles: [0.05, 0.10, 0.50, 0.80, 0.90, 0.95]
+  interval_coverage: 0.90  # P05 to P95. P10 to P95 covers only 85% nominally.
+  lag_days: [7, 14, 28]
+  rolling_window_days: [7, 14, 28]
+  price_history_weeks: 52
+  optuna_trials: 30
+  training_window_days: 365
+  origin_stride_days: 28
+  n_estimators: 160
+  num_threads: 2
+  shap_rows: 600
+reconciliation:
+  methods: [bottom_up, top_down, mint_shrink]
+  hierarchy: [total, store, store_category, store_item]
+  primary_method: mint_shrink
+  num_samples: 501
+  covariance_ridge: 0.00000002
+  coherence_atol: 0.00000001
+optimization:
+  horizon_days: 28
+  service_quantile: 0.90
+  solver: appsi_highs
+  time_limit_seconds: 60
+  mip_relative_gap: 0.01
+  num_threads: 1
+  tail_days: 14
+  safety_stock_z: 1.2815515655446004
+  lead_time_days: [2, 3, 5]
+  stockout_to_holding_penalty_ratio: [3.0, 8.0]
+  capacity_multiplier: 1.0
+  lead_time_shock_days: 0
+artifacts:
+  root_dir: artifacts

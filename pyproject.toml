@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "supply-chain-opt-engine"
+version = "0.1.0"
+description = "Hierarchical retail demand forecasting and constrained inventory replenishment."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<3",
+    "pyarrow>=18,<24",
+    "sqlalchemy>=2.0,<3",
+    "psycopg[binary]>=3.2,<4",
+    "python-dotenv>=1.0,<2",
+    "pyyaml>=6.0,<7",
+    "statsforecast>=2.0,<3",
+    "mlforecast>=1.0,<2",
+    "lightgbm>=4.5,<5",
+    "hierarchicalforecast>=1.0,<2",
+    "scikit-learn>=1.5,<2",
+    "optuna>=4.0,<5",
+    "shap>=0.46,<1",
+    "pyomo>=6.8,<7",
+    "highspy>=1.9,<2",
+]
+
+[project.optional-dependencies]
+dashboard = ["dash[diskcache]>=3.0,<5", "plotly>=6.0,<7"]
+data = ["kaggle>=1.7,<3"]
+
+[project.scripts]
+supply-chain-ingest = "supply_chain_opt_engine.ingestion:main"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6.0,<8", "ruff>=0.11,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/supply_chain_opt_engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-config --strict-markers"
+markers = [
+    "integration: requires a running PostgreSQL instance",
+    "slow: runs training or a full optimization scenario",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "app"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.coverage.run]
+source = ["supply_chain_opt_engine"]
+branch = true

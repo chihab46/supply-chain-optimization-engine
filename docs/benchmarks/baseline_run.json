@@ -1,0 +1,104 @@
+{
+  "run_id": "20261111T162554Z-2f637d4b",
+  "status": "backtested",
+  "config": {
+    "horizon": 28,
+    "season_length": 7,
+    "conformal_windows": 2,
+    "tsb_alpha_d": 0.1,
+    "tsb_alpha_p": 0.1,
+    "n_jobs": 2
+  },
+  "folds": [
+    {
+      "fold_id": 1,
+      "origin": "2015-02-28",
+      "validation_start": "2015-03-01",
+      "validation_end": "2015-03-28",
+      "horizon": 28,
+      "season": "spring",
+      "role": "tuning"
+    },
+    {
+      "fold_id": 2,
+      "origin": "2015-05-31",
+      "validation_start": "2015-06-01",
+      "validation_end": "2015-06-28",
+      "horizon": 28,
+      "season": "summer",
+      "role": "tuning"
+    },
+    {
+      "fold_id": 3,
+      "origin": "2015-08-16",
+      "validation_start": "2015-08-17",
+      "validation_end": "2015-09-13",
+      "horizon": 28,
+      "season": "back_to_school",
+      "role": "tuning"
+    },
+    {
+      "fold_id": 4,
+      "origin": "2015-11-29",
+      "validation_start": "2015-11-30",
+      "validation_end": "2015-12-27",
+      "horizon": 28,
+      "season": "winter_holidays",
+      "role": "holdout"
+    }
+  ],
+  "source": {
+    "source_type": "committed_ingestion_csv",
+    "ingestion_run_id": "20261111T145941Z-91709646",
+    "manifest_sha256": "98b87cb4a9fdb4c6bd5356b1c54189899bec056ebd2e69e8c927dc8f03159739",
+    "selection_cutoff": "2015-02-28",
+    "ingestion_sales_sha256": "a13ddbc2f43e5f6c6593c2677a3d494f613fd7ea16dd41b51dbb86c8d48a83c1",
+    "bottom_series": 600,
+    "snapshot_content_sha256": "7201b99144e9e4f4a4b5a2fc8d206711a005697531e0e925a1d65fd03b7d6bb4",
+    "sales_rows": 660000,
+    "sales_start": "2013-05-19",
+    "sales_end": "2016-05-22"
+  },
+  "models": [
+    "SeasonalNaive",
+    "AutoETS",
+    "TSB"
+  ],
+  "quantiles": [
+    0.05,
+    0.1,
+    0.5,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "prediction_rows": 201600,
+  "point_values_clipped": 4823,
+  "rows_with_quantiles_clipped": 92707,
+  "interval_method": "StatsForecast conformal_distribution, nested training-only windows",
+  "sales_policy": "Recorded sales include unlisted zeros; no demand imputation.",
+  "rmsse_policy": "Training seasonal scale; equal weight per defined series-fold RMSSE.",
+  "wmape_policy": "Pooled absolute errors / actual units; undefined at zero demand.",
+  "probability_policy": "Observation-weighted pinball; inclusive P05-P95 coverage.",
+  "summary_policy": "Separate all-fold, tuning-only and untouched holdout summaries.",
+  "versions": {
+    "statsforecast": "2.1.1",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1"
+  },
+  "code_sha256": {
+    "baseline.py": "abd19927aa33b32109e2fbb8ec19ce7cbf6fb12c32cc6cf03c214d702c73c1e8",
+    "evaluation.py": "243278a79d78c2d6350fc6480b3ac86537e1efa41085962d41180b8c5d476bd9",
+    "metrics.py": "2f55eab616689552d39e25359cce37d069ac74301ad38b2f803cf6cec3f6baff",
+    "history.py": "c939b625f0b0cb4980d634dc19f6de330391b87db3a284a058d267cf26393c52"
+  },
+  "artifact_sha256": {
+    "predictions.parquet": "42cb953b15f8f9dfd56f4b3e29ef75a67cd9688132197174c14db29bcc59e473",
+    "training_scales.parquet": "b62cf41c69474c29e659cda12308febc4a15f34d45e5719ea3d9e9c4b127bbc9",
+    "series_metrics.parquet": "49f877adbf116c84b75abd056eca54fdbe469c5229d69a029a7c060b42119194",
+    "fold_metrics.csv": "36de558f6ddcc81c254984e64eeb693bb9cd1a72c57ecb2f347b9ce0d7e8eedb",
+    "summary_metrics.csv": "c70fe3ec0ef83290a80ac63e8e4b2c44b896cf4844661d39a8a44264420a4708",
+    "runtimes.csv": "c38e06da5155fc70881eec3ae2014b7ce722e411e4a360662a8d2c017c1c2f64"
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "run_id": "20261111T165106Z-52250620",
+  "status": "forecasted",
+  "config": {
+    "horizon": 28,
+    "training_window_days": 365,
+    "origin_stride_days": 28,
+    "n_estimators": 160,
+    "optuna_trials": 30,
+    "num_threads": 2,
+    "seed": 42,
+    "shap_rows": 600
+  },
+  "source": {
+    "source_type": "committed_ingestion_csv",
+    "ingestion_run_id": "20261111T145941Z-91709646",
+    "manifest_sha256": "98b87cb4a9fdb4c6bd5356b1c54189899bec056ebd2e69e8c927dc8f03159739",
+    "selection_cutoff": "2015-02-28",
+    "ingestion_sales_sha256": "a13ddbc2f43e5f6c6593c2677a3d494f613fd7ea16dd41b51dbb86c8d48a83c1",
+    "bottom_series": 600,
+    "snapshot_content_sha256": "7201b99144e9e4f4a4b5a2fc8d206711a005697531e0e925a1d65fd03b7d6bb4",
+    "sales_rows": 660000,
+    "sales_start": "2013-05-19",
+    "sales_end": "2016-05-22",
+    "feature_snapshot_sha256": {
+      "history": "d6865afa47d1ba505c79371ae6906cadca91f66b241ea386da771013ec0fcfc0",
+      "daily": "d20b19b9acda7d6aa576e85e2f4412835457d90b0724a8c2ceec40f82d8349ae",
+      "calendar": "9db422d4c183230089c3630f163a7bb299e9f84326a552f7922a50f7da344986",
+      "weekly": "1823ea85337d99fffe8d11cac5b91be211a900ea02729ef36bd1d946dfe63210",
+      "items": "fee8fc2849247a041f638dedea78985a29108edb1d4e4259907043e8d124540f"
+    }
+  },
+  "folds": [
+    {
+      "fold_id": 1,
+      "origin": "2015-02-28",
+      "validation_start": "2015-03-01",
+      "validation_end": "2015-03-28",
+      "horizon": 28,
+      "season": "spring",
+      "role": "tuning"
+    },
+    {
+      "fold_id": 2,
+      "origin": "2015-05-31",
+      "validation_start": "2015-06-01",
+      "validation_end": "2015-06-28",
+      "horizon": 28,
+      "season": "summer",
+      "role": "tuning"
+    },
+    {
+      "fold_id": 3,
+      "origin": "2015-08-16",
+      "validation_start": "2015-08-17",
+      "validation_end": "2015-09-13",
+      "horizon": 28,
+      "season": "back_to_school",
+      "role": "tuning"
+    },
+    {
+      "fold_id": 4,
+      "origin": "2015-11-29",
+      "validation_start": "2015-11-30",
+      "validation_end": "2015-12-27",
+      "horizon": 28,
+      "season": "winter_holidays",
+      "role": "holdout"
+    }
+  ],
+  "training_blocks": [
+    {
+      "fold_id": 1,
+      "training_origins": [
+        "2014-03-01",
+        "2014-03-29",
+        "2014-04-26",
+        "2014-05-24",
+        "2014-06-21",
+        "2014-07-19",
+        "2014-08-16",
+        "2014-09-13",
+        "2014-10-11",
+        "2014-11-08",
+        "2014-12-06",
+        "2015-01-03",
+        "2015-01-31"
+      ],
+      "max_label_date": "2015-02-28"
+    },
+    {
+      "fold_id": 2,
+      "training_origins": [
+        "2014-06-01",
+        "2014-06-29",
+        "2014-07-27",
+        "2014-08-24",
+        "2014-09-21",
+        "2014-10-19",
+        "2014-11-16",
+        "2014-12-14",
+        "2015-01-11",
+        "2015-02-08",
+        "2015-03-08",
+        "2015-04-05",
+        "2015-05-03"
+      ],
+      "max_label_date": "2015-05-31"
+    },
+    {
+      "fold_id": 3,
+      "training_origins": [
+        "2014-08-17",
+        "2014-09-14",
+        "2014-10-12",
+        "2014-11-09",
+        "2014-12-07",
+        "2015-01-04",
+        "2015-02-01",
+        "2015-03-01",
+        "2015-03-29",
+        "2015-04-26",
+        "2015-05-24",
+        "2015-06-21",
+        "2015-07-19"
+      ],
+      "max_label_date": "2015-08-16"
+    },
+    {
+      "fold_id": 4,
+      "training_origins": [
+        "2014-11-30",
+        "2014-12-28",
+        "2015-01-25",
+        "2015-02-22",
+        "2015-03-22",
+        "2015-04-19",
+        "2015-05-17",
+        "2015-06-14",
+        "2015-07-12",
+        "2015-08-09",
+        "2015-09-06",
+        "2015-10-04",
+        "2015-11-01"
+      ],
+      "max_label_date": "2015-11-29"
+    }
+  ],
+  "latest_origin": "2016-05-22",
+  "best_params": {
+    "num_leaves": 59,
+    "min_child_samples": 80,
+    "learning_rate": 0.07203805967148737,
+    "colsample_bytree": 0.6964022239747931
+  },
+  "optuna_objective": "Mean median pinball over tuning folds 1-3 only",
+  "best_trial": 23,
+  "best_tuning_value": 1.8587235593470648,
+  "trial_states": {
+    "COMPLETE": 23,
+    "PRUNED": 7
+  },
+  "quantiles": [
+    0.05,
+    0.1,
+    0.5,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "feature_names": [
+    "series_id",
+    "store_id",
+    "item_id",
+    "dept_id",
+    "cat_id",
+    "event_name_1",
+    "event_name_2",
+    "horizon",
+    "origin_lag_7",
+    "origin_lag_14",
+    "origin_lag_28",
+    "rolling_mean_7",
+    "rolling_mean_14",
+    "rolling_mean_28",
+    "rolling_std_7",
+    "rolling_std_14",
+    "rolling_std_28",
+    "zero_sales_share_28",
+    "available_days_7",
+    "available_days_14",
+    "available_days_28",
+    "origin_is_available",
+    "sell_price",
+    "price_mean_52w",
+    "price_relativity",
+    "price_momentum",
+    "price_observed_weeks_52w",
+    "price_age_days",
+    "price_carried_forward",
+    "snap_ca",
+    "is_national_holiday",
+    "has_scheduled_event",
+    "day_of_week",
+    "month",
+    "year",
+    "day_of_month",
+    "week_of_year",
+    "days_until_next_holiday"
+  ],
+  "prediction_rows": 67200,
+  "latest_rows": 16800,
+  "repaired_rows": 46872,
+  "repair_policy": "Nonnegative P50-anchored sorting/clamping of other quantiles",
+  "shap_policy": "TreeSHAP of raw P50 on day-one rows; no causal claims",
+  "price_policy": "Carry forward origin-known prices; future prices are not inputs",
+  "sales_policy": "Recorded labels retain unlisted zeros; demand statistics exclude them",
+  "training_policy": "Non-overlapping horizon blocks; labels end by each cutoff",
+  "rmsse_policy": "Full pre-origin seasonal scale, as in baseline scoring",
+  "wmape_policy": "Pooled absolute P50 errors divided by actual units",
+  "coverage_policy": "Inclusive central P05-P95 coverage, observation weighted",
+  "runtime": {
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+    "visible_cpus": 8,
+    "model_threads": 2,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "versions": {
+    "lightgbm": "4.7.0",
+    "mlforecast": "1.1.0",
+    "optuna": "4.9.0",
+    "shap": "0.54.1",
+    "numpy": "2.5.4",
+    "pandas": "2.3.3"
+  },
+  "code_sha256": {
+    "forecasting.py": "2831513d1bedc9ccbe98d943c62b43f03df8d5ae354e94b17300273b4f266db6",
+    "learning.py": "9fdb3fe78b102f9b0fbc43e9088deddcf2593e7cc68625f74a8d5d31c5a82357",
+    "tuning.py": "a6ab9254e3ad48c1a98c3b26eb5c2cf0dc9edb52dc8bf1a3b9fa46649b234c65",
+    "explanations.py": "763004725f69c596a5cbd7a508b83cd67c03d238c2a7a1aefb1b7701fb84e9cc",
+    "feature_store.py": "0d97bf4a524f293e3c7fe90c48714dffe4cc40e982d6bc51afb63cf575b8d606",
+    "evaluation.py": "243278a79d78c2d6350fc6480b3ac86537e1efa41085962d41180b8c5d476bd9",
+    "metrics.py": "2f55eab616689552d39e25359cce37d069ac74301ad38b2f803cf6cec3f6baff"
+  },
+  "artifact_sha256": {
+    "holdout_shap_importance.csv": "685977b47e1d42871c994737a005e14e74502317e2a4e88541741123d942211d",
+    "training_scales.parquet": "b62cf41c69474c29e659cda12308febc4a15f34d45e5719ea3d9e9c4b127bbc9",
+    "latest_shap_importance.csv": "5de882e42f383b2fa9a6bae8ee5289e6e034b4547a47cf7cdce52b995466847a",
+    "fold_metrics.csv": "3dee82feffd543f2d197c1227dfb56a1d632b9de381270ddcd649f11a09f0cc0",
+    "holdout_shap.parquet": "245cd14c3a41eea62f34aa0ee21abcbacd5ab71796472d4d405eb5282c2d81e8",
+    "summary_metrics.csv": "dc6715eb6dba8c604a8424e6b566b2c25a7f62dfef5c9a5f51bf863dab6bf225",
+    "latest_forecasts.parquet": "4d80e635f23016ea2b5ae6c891bba8dcc30f09802c216dcef262ef8784a619b8",
+    "study.sqlite3": "fed830e6c7f3e36a6795fbe08da9ce5402ba96daf92d489edb6cdc5e7cad3ba2",
+    "predictions.parquet": "977f787aba5590f8cd27b03b3f0e0281bf3e0f8fbd2024aba3d3d712a1ee8374",
+    "runtimes.csv": "c62c374c87651a6ab2bbe888cbb07fae552090cd2ce02553ee763c11ea503f07",
+    "series_metrics.parquet": "0b109635260ecab3329267bc627ae874d2dadf57f5eca95cf5e747077d99f0b0",
+    "best_params.json": "21d091f189e6fae24c117c79d839c1dcf036d0bdc4266fc36e2bc17f33f41246",
+    "optuna_trials.csv": "88a96cc20e63d72c56e6ba050f9f02900836d30e3f9fd8416bc43cf01d595803",
+    "latest_shap.parquet": "8ab148b760c7cb2c3be23dfce49584a0b0ca6230b7f725f64454b1b8dee313d1",
+    "latest/q80.txt": "6dec1f5eb6f92214ee02ecc1adacb73e82a674adc64ee74ec1c9c49e23cabbe8",
+    "latest/q05.txt": "89e9cbdd2b746f276215a1e21e56c484e8f2f98b5eec37da2f81fae36eb67bf7",
+    "latest/model.json": "c244af571b15e9209251095d5495d3ab9457af4c7cf6aed73451143a9f18b2b2",
+    "latest/q10.txt": "33a87ab29489984669c00d802787261ecedb45db560b2c4b531cebd44ff62743",
+    "latest/q90.txt": "7754992b36277a011cba451e593a19118c7d0213ab54d65fa0da60dc5dde8bc5",
+    "latest/q95.txt": "860dcd662853879681deadefca5314db5d9689b49216340fcf17b014a82f3f01",
+    "latest/q50.txt": "4ac25f3f67ad6ae64bc5add8c3f9035b7a77d5f89d3499762c453f6f8f5afc0e",
+    "holdout/q80.txt": "74ab82b83da547fd7da68a8bb7127ef82a6267be472092a207a825ca67d1e65d",
+    "holdout/q05.txt": "626a987afe7fc2e200c5014738fca15eca0c643e2ac04c8a399933248cd684c4",
+    "holdout/model.json": "8b51bd4d11fa95a72ed71b45566c7a04694c9246906793e03d422eb6a34e088d",
+    "holdout/q10.txt": "0442ddb8141ac94cc6ed5474faf709052cc285861593e3bc807b33ebd6b042f4",
+    "holdout/q90.txt": "9ecb4f4eb1b94bf91178f5df64d6200ef9f80b3cbf4b2d2e56d09cedd3922fd2",
+    "holdout/q95.txt": "20ea9349ed08623a3812ac9adca1b4a8398bd9295386901ea29990febfe32b67",
+    "holdout/q50.txt": "c50edfae04dd42b8add557665a9fc8bc3b68f1ce61d276483b441a182636fbf1"
+  }
+}

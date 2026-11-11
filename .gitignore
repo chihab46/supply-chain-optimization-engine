@@ -1,0 +1,30 @@
+# Python and developer tools
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage*
+htmlcov/
+.uv-cache/
+.cache/
+
+# Local credentials and settings
+.env
+.env.*
+!.env.example
+.aws/
+.DS_Store
+
+# Downloaded data and generated outputs
+data/raw/*
+data/interim/*
+data/processed/*
+data/synthetic/*
+!data/**/.gitkeep
+artifacts/*/*
+!artifacts/**/.gitkeep
+*.log
